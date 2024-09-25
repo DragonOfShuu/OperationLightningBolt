@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-add-page',
+  selector: 'shuu-add-page',
   standalone: true,
   imports: [],
   templateUrl: './add-page.component.html',

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PanelPagerService } from './panel-pager.service';
+import { AgentPanelPagerService } from './agent-panel-pager.service';
 
 describe('PanelPagerService', () => {
-  let service: PanelPagerService;
+  let service: AgentPanelPagerService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PanelPagerService);
+    service = TestBed.inject(AgentPanelPagerService);
   });
 
   it('should be created', () => {

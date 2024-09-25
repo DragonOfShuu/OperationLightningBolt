@@ -13,7 +13,7 @@ gulp.task("default", () => {
       // @ts-expect-error `this` is of type Document, however
       // the library in use does not specify that with types.
       return (this as Document).querySelectorAll("head style").forEach((elem) => {
-       discardAttributes(elem, "media");
+        discardAttributes(elem, "media");
     });
 
   }))
