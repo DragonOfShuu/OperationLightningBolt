@@ -1,27 +1,32 @@
-import { Component, Input } from '@angular/core';
+import { NgComponentOutlet, TitleCasePipe } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 type Pages<T extends string> = { [key in T]?: Component }
 
 @Component({
   selector: 'shuu-tab-switcher',
   standalone: true,
-  imports: [],
+  imports: [NgComponentOutlet, TitleCasePipe],
   templateUrl: './tab-switcher.component.html',
   styleUrl: './tab-switcher.component.sass',
 })
 export class TabSwitcherComponent<T extends string> {
   @Input({ required: true }) pages: Pages<T> = {};
   @Input({ required: true }) page: T = '' as T;
+  @Output() pageChange = new EventEmitter<T>();
 
-  getPage() {
-    return this.pages[this.page];
+  getPage(): any|null {
+    const newPage = this.pages[this.page]
+    console.log(`Getting page: ${newPage}`)
+    return newPage??null;
   }
 
   setPage(newPage: T) {
     this.page = newPage;
-    // NEED TO CREATE A TWO WAY BINDING
-    // WHEN WE SET THE PAGE TO NOTIFY
-    // THE PARENT, AND GIVE HTE ABILITY
-    // TO UPDATE THE SERVICE
+    this.pageChange.emit(newPage);
+  }
+
+  getPagesIterable() {
+    return Object.keys(this.pages) as T[];
   }
 }

@@ -1,3 +1,12 @@
-<div class="rounded-lg bg-teal-900 border-2 border-teal-700 h-full w-96">
-  <ng-container *ngComponentOutlet="getPage()"></ng-container>
+<div class="flex h-full">
+  <div class="h-full overflow-auto flex flex-col gap-1">
+    @for (pageName of getPagesIterable(); track $index) {
+      <button [attr.current-page]="pageName === page" class="tab-button" (click)="setPage(pageName)">
+        {{ pageName | titlecase }}
+      </button>
+    }
+  </div>
+  <div class="page-container">
+    <ng-container *ngComponentOutlet="getPage()"></ng-container>
+  </div>
 </div>
