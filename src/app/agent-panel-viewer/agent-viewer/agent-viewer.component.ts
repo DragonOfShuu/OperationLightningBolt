@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { TabSwitcherComponent } from "../../components/tab-switcher/tab-switcher.component";
-import { AgentPanelPagerService } from '../../services/agent-panel-pager.service';
+import { AgentPanelPagerService } from '../agent-panel-pager.service';
 
 @Component({
   selector: 'shuu-agent-viewer',
