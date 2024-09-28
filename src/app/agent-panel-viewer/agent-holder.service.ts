@@ -36,4 +36,8 @@ export class AgentHolderService {
   saveAgents(agentList: Agent[]) {
     this.browserLocalstorage.setData(this.STORAGE_KEY, agentList);
   }
+
+  getAgents() {
+    return this.agents;
+  }
 }
