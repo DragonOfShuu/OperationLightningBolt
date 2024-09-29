@@ -1,1 +1,9 @@
-<p>view-page works!</p>
+<div class="p-4">
+    @for (row of this.agentHolder.getAgents(); track row.id) {
+        <div class="border-2 border-teal-500">
+            <pre>
+                {{row | json}}
+            </pre>
+        </div>
+    }
+</div>

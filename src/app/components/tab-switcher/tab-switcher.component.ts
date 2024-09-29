@@ -17,7 +17,6 @@ export class TabSwitcherComponent<T extends string> {
 
   getPage(): any|null {
     const newPage = this.pages[this.page]
-    console.log(`Getting page: ${newPage}`)
     return newPage??null;
   }
 

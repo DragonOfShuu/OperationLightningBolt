@@ -1,1 +1,19 @@
-<p>add-page works!</p>
+<div class="p-4">
+    <form [formGroup]="addAgentsForm" (ngSubmit)="submitAgent()" class="add-form">
+        <label for="name">
+            Name:
+            <input type="text" id="name" formControlName="name" />
+        </label>
+        <label for="quote">
+            Quote:
+            <textarea id="quote" formControlName="quote"></textarea>
+        </label>
+        <label for="introspective">
+            Introspective (optional):
+            <input type="text" id="introspective" formControlName="introspective" />
+        </label> 
+        <button type="submit" class="button" [disabled]="!addAgentsForm.valid">
+            Add Agent
+        </button>
+    </form>
+</div>

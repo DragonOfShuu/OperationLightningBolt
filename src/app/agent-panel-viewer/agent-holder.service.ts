@@ -1,43 +1,52 @@
 import { inject, Injectable } from '@angular/core';
 import { Agent } from './agent.type';
 import { BrowserStorageService } from '../core-services/browser-storage.service';
+import { Agentwid } from './agentwid.type';
+import { AgentHolderData } from './agent-holder-data.type';
 
 @Injectable()
 export class AgentHolderService {
   readonly STORAGE_KEY = 'agent-holder';
   browserLocalstorage = inject(BrowserStorageService);
-  private agents;
+  private agentHolderData: AgentHolderData;
 
   constructor() {
-    const newData = this.browserLocalstorage.getData<Agent[]>(this.STORAGE_KEY);
-    this.agents = newData ?? [];
+    const newData = this.browserLocalstorage.getData<AgentHolderData>(this.STORAGE_KEY);
+    this.agentHolderData = newData ?? { agents: [], currId: 0 };
   }
 
   addAgent(agent: Agent) {
-    this.agents.push(agent);
-    this.saveAgents(this.agents);
+    const newAgent: Agentwid = {...agent, id: this.agentHolderData.currId.toString() }
+    this.saveAgents({
+      agents: [...this.agentHolderData.agents, newAgent], 
+      currId: this.agentHolderData.currId+1
+    });
   }
 
   removeAgent(index: number): void;
-  removeAgent(ref: Agent): void;
-  removeAgent(data: Agent|number): void {
+  removeAgent(ref: Agentwid): void;
+  removeAgent(data: Agentwid|number): void {
     let index = -1;
     if (typeof data === "number") {
       index = data;
     } else {
-      index = this.agents.indexOf(data);
+      index = this.agentHolderData.agents.indexOf(data);
     }
 
     if (index===-1) throw new Error('Index does not exist when removing agent.');
 
-    this.saveAgents(this.agents.splice(index, 1));
+    this.saveAgents({
+      ...this.agentHolderData, 
+      agents: this.agentHolderData.agents.splice(index, 1)
+    });
   }
 
-  saveAgents(agentList: Agent[]) {
-    this.browserLocalstorage.setData(this.STORAGE_KEY, agentList);
+  saveAgents(newAgentHolderData: AgentHolderData) {
+    this.browserLocalstorage.setData(this.STORAGE_KEY, newAgentHolderData);
+    this.agentHolderData = newAgentHolderData;
   }
 
   getAgents() {
-    return this.agents;
+    return this.agentHolderData.agents;
   }
 }

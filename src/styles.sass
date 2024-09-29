@@ -2,10 +2,31 @@
 @tailwind components
 @tailwind utilities
 
-
 :root
   @apply bg-teal-950 text-white
 
 @layer base
   h1
     @apply text-5xl
+
+@layer components
+  input[type="text"], textarea
+    @apply rounded-md p-1 bg-teal-800 border-2 border-teal-700 outline-none
+
+    &:focus
+      @apply border-teal-600
+
+  .button
+    display: block
+    border-radius: 4px
+
+    @apply bg-teal-700 p-2 transition-colors
+
+    &:hover
+      @apply bg-teal-600
+
+    &:active
+      @apply bg-teal-800
+
+    &:disabled
+      background: repeating-linear-gradient(35deg, theme('colors.teal.900'), theme('colors.teal.900') 10px, theme('colors.teal.800') 11px, theme('colors.teal.800') 20px)
