@@ -1,0 +1,11 @@
+<div>
+  <strong class="block">Name</strong>
+  <p>{{ agent.name }}</p>
+</div>
+<div class="overflow-hidden">
+  <strong class="block">Quote</strong>
+  <p class="text-ellipsis whitespace-nowrap overflow-hidden">{{ agent.quote }}</p>
+</div>
+<div class="w-6 flex flex-col items-center justify-center">
+  <app-garbage-can-svg class="object-contain size-6" (click)="deleteAgent()" />
+</div>

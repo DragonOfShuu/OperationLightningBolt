@@ -18,7 +18,7 @@ export class AgentHolderService {
   addAgent(agent: Agent) {
     const newAgent: Agentwid = {...agent, id: this.agentHolderData.currId.toString() }
     this.saveAgents({
-      agents: [...this.agentHolderData.agents, newAgent], 
+      agents: [...this.agentHolderData.agents, newAgent],
       currId: this.agentHolderData.currId+1
     });
   }
@@ -35,9 +35,11 @@ export class AgentHolderService {
 
     if (index===-1) throw new Error('Index does not exist when removing agent.');
 
+    this.agentHolderData.agents.splice(index, 1)
+
     this.saveAgents({
-      ...this.agentHolderData, 
-      agents: this.agentHolderData.agents.splice(index, 1)
+      ...this.agentHolderData,
+      agents: [...this.agentHolderData.agents],
     });
   }
 
