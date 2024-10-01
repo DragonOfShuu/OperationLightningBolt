@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { AgentHolderService } from '../agent-holder.service';
 
 @Component({
   selector: 'shuu-select-page',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './select-page.component.sass'
 })
 export class SelectPageComponent {
-
+  private agentHolder = inject(AgentHolderService)
 }

@@ -16,7 +16,13 @@ export class AgentObjectComponent {
 
   readonly agentHolder = inject(AgentHolderService)
 
+  protected expanded = false;
+
   deleteAgent() {
     this.agentHolder.removeAgent(this.agent)
+  }
+
+  toggleExpand() {
+    this.expanded = !this.expanded;
   }
 }

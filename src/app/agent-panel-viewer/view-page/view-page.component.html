@@ -1,8 +1,8 @@
-<div class="p-4 size-full">
+<div class="size-full">
   @if (this.agentHolder.getAgents().length!==0) {
-    <div class="items-viewer">
+    <div class="items-viewer p-4">
       @for (agent of this.agentHolder.getAgents(); track agent.id) {
-          <shuu-agent-object [agent]="agent" />
+        <shuu-agent-object [agent]="agent" />
       }
     </div>
   } @else {
