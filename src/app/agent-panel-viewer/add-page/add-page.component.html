@@ -1,5 +1,5 @@
 <div class="p-4">
-    <form [formGroup]="addAgentsForm" (ngSubmit)="submitAgent()" class="add-form">
+    <form [formGroup]="agentHolder.addAgentsForm" (ngSubmit)="submitAgent()" class="add-form">
         <label for="name">
             Name:
             <input type="text" id="name" formControlName="name" />
@@ -11,8 +11,8 @@
         <label for="introspective">
             Introspective (optional):
             <input type="text" id="introspective" formControlName="introspective" />
-        </label> 
-        <button type="submit" class="button" [disabled]="!addAgentsForm.valid">
+        </label>
+        <button type="submit" class="button" [disabled]="!agentHolder.addAgentsForm.valid">
             Add Agent
         </button>
     </form>

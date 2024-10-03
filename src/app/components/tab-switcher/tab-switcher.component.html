@@ -1,7 +1,7 @@
 <div class="flex h-full">
   <div class="h-full overflow-auto flex flex-col gap-1">
     @for (pageName of getPagesIterable(); track $index) {
-      <button [attr.current-page]="pageName === page" class="tab-button" (click)="setPage(pageName)">
+      <button [attr.current-page]="pageName === page()" class="tab-button" (click)="setPage(pageName)">
         {{ pageName | titlecase }}
       </button>
     }

@@ -1,5 +1,5 @@
 import { NgComponentOutlet, TitleCasePipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ComponentRef, inject, input, model, output } from '@angular/core';
 
 type Pages<T extends string> = { [key in T]?: Component }
 
@@ -11,21 +11,19 @@ type Pages<T extends string> = { [key in T]?: Component }
   styleUrl: './tab-switcher.component.sass',
 })
 export class TabSwitcherComponent<T extends string> {
-  @Input({ required: true }) pages: Pages<T> = {};
-  @Input({ required: true }) page: T = '' as T;
-  @Output() pageChange = new EventEmitter<T>();
+  readonly pages = input.required<Pages<T>>();
+  readonly page = model.required<T>();
 
   getPage(): any|null {
-    const newPage = this.pages[this.page]
+    const newPage = this.pages()[this.page()]
     return newPage??null;
   }
 
   setPage(newPage: T) {
-    this.page = newPage;
-    this.pageChange.emit(newPage);
+    this.page.set(newPage)
   }
 
-  getPagesIterable() {
-    return Object.keys(this.pages) as T[];
+  getPagesIterable(): T[] {
+    return Object.keys(this.pages()) as T[];
   }
 }

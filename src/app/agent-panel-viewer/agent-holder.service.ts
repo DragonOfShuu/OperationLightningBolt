@@ -3,12 +3,21 @@ import { Agent } from './agent.type';
 import { BrowserStorageService } from '../core-services/browser-storage.service';
 import { Agentwid } from './agentwid.type';
 import { AgentHolderData } from './agent-holder-data.type';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AgentHolderService {
   readonly STORAGE_KEY = 'agent-holder';
   browserLocalstorage = inject(BrowserStorageService);
   private agentHolderData: AgentHolderData;
+
+  addAgentsForm = new FormGroup({
+    name: new FormControl('', { validators: Validators.required }),
+    quote: new FormControl('', { validators: Validators.required }),
+    introspective: new FormControl(''),
+  })
 
   constructor() {
     const newData = this.browserLocalstorage.getData<AgentHolderData>(this.STORAGE_KEY);

@@ -13,18 +13,12 @@ import { Agent } from '../agent.type';
 export class AddPageComponent {
   readonly agentHolder = inject(AgentHolderService);
 
-  addAgentsForm = new FormGroup({
-    name: new FormControl('', { validators: Validators.required }),
-    quote: new FormControl('', { validators: Validators.required }),
-    introspective: new FormControl(''),
-  })
-
   submitAgent() {
-    const newData = this.addAgentsForm.value;
+    const newData = this.agentHolder.addAgentsForm.value;
     for (const item of Object.values(newData)) {
       if (item===undefined||item===null) throw new Error("Value was somehow empty for undefined.")
     }
-    this.agentHolder.addAgent(this.addAgentsForm.value as Agent)
-    this.addAgentsForm.reset();
+    this.agentHolder.addAgent(this.agentHolder.addAgentsForm.value as Agent)
+    this.agentHolder.addAgentsForm.reset();
   }
 }
