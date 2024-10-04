@@ -60,4 +60,10 @@ export class AgentHolderService {
   getAgents() {
     return this.agentHolderData.agents;
   }
+
+  selectRandom() {
+    const agents = this.agentHolderData.agents;
+    const randomIndex = Math.floor(Math.random()*agents.length)
+    return agents[randomIndex];
+  }
 }
