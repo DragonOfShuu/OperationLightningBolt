@@ -14,9 +14,9 @@ export class AgentHolderService {
   private agentHolderData: AgentHolderData;
 
   addAgentsForm = new FormGroup({
-    name: new FormControl('', { validators: Validators.required }),
-    quote: new FormControl('', { validators: Validators.required }),
-    introspective: new FormControl(''),
+    name: new FormControl('', { validators: Validators.required, nonNullable: true }),
+    quote: new FormControl('', { validators: Validators.required, nonNullable: true }),
+    introspective: new FormControl('', {nonNullable: true}),
   })
 
   constructor() {

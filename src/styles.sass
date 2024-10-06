@@ -4,7 +4,21 @@
 
 :root
   box-sizing: border-box
+  scroll-behavior: smooth
+
   @apply bg-teal-950 text-white
+
+*
+  scrollbar-width: thin
+  scrollbar-3dlight-color: white
+  scrollbar-color: theme('colors.teal.700') transparent
+  scrollbar-highlight-color: theme('colors.teal.600') transparent
+
+@keyframes background-scroll-background-anim
+  0%
+    transform: translateX(0)
+  100%
+    transform: translateX(50%)
 
 @layer base
   h1
@@ -31,6 +45,12 @@
 
     &:disabled
       background: repeating-linear-gradient(35deg, theme('colors.teal.900'), theme('colors.teal.900') 10px, theme('colors.teal.800') 11px, theme('colors.teal.800') 20px)
+  
+  .stripe-background
+    background: repeating-linear-gradient(35deg, theme('colors.teal.900'), theme('colors.teal.900') 5px, theme('colors.teal.800') 5.1px, theme('colors.teal.800') 10px)
+  
+  .background-horizontal
+    animation: 10s both infinite linear background-scroll-background-anim
 
   .stroke-button
     @apply stroke-2 stroke-teal-500 cursor-pointer

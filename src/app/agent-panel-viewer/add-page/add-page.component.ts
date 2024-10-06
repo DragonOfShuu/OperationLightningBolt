@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AgentHolderService } from '../agent-holder.service';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { Agent } from '../agent.type';
 
 @Component({
@@ -14,11 +14,8 @@ export class AddPageComponent {
   readonly agentHolder = inject(AgentHolderService);
 
   submitAgent() {
-    const newData = this.agentHolder.addAgentsForm.value;
-    for (const item of Object.values(newData)) {
-      if (item===undefined||item===null) throw new Error("Value was somehow empty for undefined.")
-    }
-    this.agentHolder.addAgent(this.agentHolder.addAgentsForm.value as Agent)
+    const newAgent = this.agentHolder.addAgentsForm.value as Agent;
+    this.agentHolder.addAgent(newAgent)
     this.agentHolder.addAgentsForm.reset();
   }
 }

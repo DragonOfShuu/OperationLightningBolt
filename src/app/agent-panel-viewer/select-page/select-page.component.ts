@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { AgentHolderService } from '../agent-holder.service';
+import { Agentwid } from '../agentwid.type';
 
 @Component({
   selector: 'shuu-select-page',
@@ -10,4 +11,10 @@ import { AgentHolderService } from '../agent-holder.service';
 })
 export class SelectPageComponent {
   private agentHolder = inject(AgentHolderService)
+  selectedAgent: null|Agentwid = null;
+
+  selectAgent() {
+    const agent = this.agentHolder.selectRandom();
+    this.selectedAgent = agent;
+  }
 }

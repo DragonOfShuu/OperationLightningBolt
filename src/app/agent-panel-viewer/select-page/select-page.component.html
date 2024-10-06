@@ -1,7 +1,17 @@
 <div class="size-full relative p-5">
-  <div class="absolute inset-0 flex items-center justify-center bg-teal-950/50">
-    <button class="button">
+  <div class="absolute inset-0 flex items-center justify-center z-10">
+    <button class="button" (click)="selectAgent()">
       Choose Agent
     </button>
+    @if (selectedAgent) {
+      <div>
+        {{selectedAgent.name}}
+      </div>
+    }
+  </div>
+  <div class="absolute inset-0 overflow-hidden">
+    <div class="absolute top-0 bottom-0 right-0 w-[200%] background-horizontal stripe-background">
+  
+    </div>
   </div>
 </div>
