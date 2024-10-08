@@ -12,9 +12,16 @@ import { Agentwid } from '../agentwid.type';
 export class SelectPageComponent {
   private agentHolder = inject(AgentHolderService)
   selectedAgent: null|Agentwid = null;
+  dialog: null|HTMLDialogElement = null;
 
-  selectAgent() {
+  onClose(e: Event) {
+
+  }
+
+  selectAgent(dialog: HTMLDialogElement) {
     const agent = this.agentHolder.selectRandom();
     this.selectedAgent = agent;
+    this.dialog = dialog;
+    this.dialog.showModal();
   }
 }
