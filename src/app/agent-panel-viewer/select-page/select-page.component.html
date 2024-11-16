@@ -1,15 +1,22 @@
 <div class="size-full relative p-5 shadow-black">
   <div class="absolute inset-0 flex items-center justify-center z-10">
-    <button class="button shadow-lg" (click)="selectAgent(winnerdialog)">
-      Choose Agent
+    <button class="button no-stripe-button px-8 py-4 shadow-lg" (click)="selectAgent(winnerdialog)" [disabled]="agentHolder.getAgents().length===0">
+      {{ agentHolder.getAgents().length === 0 ? "No Agents" : "Select Agent" }}
     </button>
-    <dialog #winnerdialog class="p-4 bg-teal-800 dialog" (close)="onClose($event)">
-      <h1 class="text-white">
-        {{ selectedAgent?.name }}
-      </h1>
-      <p class="text-gray-100">
-        {{ selectedAgent?.quote }}
-      </p>
+    <dialog #winnerdialog class="p-4 dialog bg-transparent" (close)="onClose($event)">
+      <div class="dialog-inner">
+        <h1 class="text-white dialog-title">
+            {{ selectedAgent?.name }}
+        </h1>
+        <div class="dialog-text">
+          <p class="flex flex-col justify-center items-stretch">
+            &lsquo;{{ selectedAgent?.quote }}&rsquo;
+          </p>
+          <button class="button" (click)="winnerdialog.close()">
+            Close
+          </button>
+        </div>
+      </div>
     </dialog>
   </div>
   <div class="absolute inset-0 overflow-hidden shadow-inner">

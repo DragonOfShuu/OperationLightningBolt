@@ -6,6 +6,24 @@
 
     &::backdrop
       animation: backdrop-fade-in 0.7s ease-out forwards
+  
+  .dialog-inner
+    display: grid
+    grid-template-rows: 50px 20px auto 70px 20px
+    grid-template-columns: 70px auto 20px 30px
+
+    .dialog-title
+      @apply col-span-full align-bottom flex items-center relative z-10
+      grid-row: 1 / 3
+
+    .dialog-text
+      grid-column: 2 / 4
+      grid-row: 2 / 5
+      max-width: 50vw
+
+      @apply flex flex-col gap-2 justify-center items-center rounded-lg text-white border-teal-800 border-2 bg-teal-900
+      @apply p-4
+
 
 
 @keyframes fade-in

@@ -10,7 +10,7 @@ import { Agentwid } from '../agentwid.type';
   styleUrl: './select-page.component.sass'
 })
 export class SelectPageComponent {
-  private agentHolder = inject(AgentHolderService)
+  agentHolder = inject(AgentHolderService)
   selectedAgent: null|Agentwid = null;
   dialog: null|HTMLDialogElement = null;
 
@@ -20,6 +20,7 @@ export class SelectPageComponent {
 
   selectAgent(dialog: HTMLDialogElement) {
     const agent = this.agentHolder.selectRandom();
+    if (!agent) return;
     this.selectedAgent = agent;
     this.dialog = dialog;
     this.dialog.showModal();
